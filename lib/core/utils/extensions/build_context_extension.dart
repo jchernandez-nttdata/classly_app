@@ -1,6 +1,8 @@
 import 'package:classly_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-extension LocalizedBuildContext on BuildContext {
+extension BuildContextExtension on BuildContext {
   AppLocalizations get localizations => AppLocalizations.of(this)!;
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
+  TextTheme get textTheme => Theme.of(this).textTheme;
 }
