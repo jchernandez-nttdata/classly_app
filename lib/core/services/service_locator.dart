@@ -8,6 +8,11 @@ import 'package:classly_app/features/auth/data/datasources/auth_datasource_impl.
 import 'package:classly_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:classly_app/features/auth/domain/cubits/auth/auth_cubit.dart';
 import 'package:classly_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:classly_app/features/students/data/datasources/students_datasource.dart';
+import 'package:classly_app/features/students/data/datasources/students_datasource_impl.dart';
+import 'package:classly_app/features/students/data/repositories/student_repository_impl.dart';
+import 'package:classly_app/features/students/domain/cubits/students/students_cubit.dart';
+import 'package:classly_app/features/students/domain/repositories/students_repository.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -33,5 +38,17 @@ void setUpServiceLocator() {
     )
     ..registerFactory<AuthCubit>(
       () => AuthCubit(repository: getIt<IAuthRepository>()),
+    )
+    // STUDENTS MODULE
+    ..registerLazySingleton<IStudentsDatasource>(
+      () => StudentsDatasourceImpl(httpClient: getIt<IHttpClient>()),
+    )
+    ..registerLazySingleton<IStudentsRepository>(
+      () => StudentsRepositoryImpl(
+        studentsDatasource: getIt<IStudentsDatasource>(),
+      ),
+    )
+    ..registerFactory<StudentsCubit>(
+      () => StudentsCubit(repository: getIt<IStudentsRepository>()),
     );
 }

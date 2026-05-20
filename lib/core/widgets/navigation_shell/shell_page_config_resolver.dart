@@ -10,7 +10,7 @@ class ShellPageConfigResolver {
     final location = GoRouterState.of(context).matchedLocation;
     switch (location) {
       case '/students':
-        return StudentsPage.config(context);
+        return StudentsView.config(context);
 
       default:
         return const ShellPageConfig();

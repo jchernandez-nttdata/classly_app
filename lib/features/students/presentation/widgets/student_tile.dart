@@ -21,7 +21,6 @@ class StudentTile extends StatelessWidget {
         vertical: 12,
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Column(
