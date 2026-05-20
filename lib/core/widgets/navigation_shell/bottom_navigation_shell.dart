@@ -1,4 +1,5 @@
 import 'package:classly_app/core/utils/extensions/build_context_extension.dart';
+import 'package:classly_app/core/widgets/navigation_shell/shell_page_config_resolver.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,8 +9,12 @@ class MainNavigationShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final config = ShellPageConfigResolver.resolve(
+      context,
+    );
     return Scaffold(
       body: navigationShell,
+      floatingActionButton: config.floatingActionButton,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: navigationShell.currentIndex,
         onTap: (index) => navigationShell.goBranch(
