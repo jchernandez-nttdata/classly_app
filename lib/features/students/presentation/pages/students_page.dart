@@ -25,7 +25,7 @@ class StudentsPage extends StatelessWidget {
           if (state.isError) {
             ClasslySnackbar.show(
               context,
-              message: context.localizations.operationFailed('students'),
+              message: context.localizations.operationFailed,
               type: .error,
             );
           }
@@ -90,7 +90,7 @@ class _StudentsViewState extends State<StudentsView> {
             else if (students.isEmpty)
               Center(
                 child: Text(
-                  'No students',
+                  context.localizations.emptyStudents,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: context.colorScheme.grayColor,
                   ),

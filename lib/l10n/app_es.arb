@@ -6,10 +6,11 @@
   "emailRequired": "Correo es requerido",
   "invalidEmail": "Correo es inválido",
   "passwordRequired": "Contraseña es requerida",
-  "operationFailed": "Ocurrió un problema al intentar {operation}. Inténtalo nuevamente.",
+  "operationFailed": "Ocurrió un problema. Inténtalo nuevamente mas tarde.",
   "students": "Alumnos",
   "classes": "Clases",
   "chat": "Chat",
   "attendances": "Asistencias",
-  "payments": "Pagos"
+  "payments": "Pagos",
+  "emptyStudents": "No hay estudiantes"
 }

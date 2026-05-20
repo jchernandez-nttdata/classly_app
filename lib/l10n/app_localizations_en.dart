@@ -30,9 +30,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordRequired => 'Password es required';
 
   @override
-  String operationFailed(Object operation) {
-    return 'Something went wrong while trying to $operation. Please try again.';
-  }
+  String get operationFailed => 'Something went wrong. Please try again later.';
 
   @override
   String get students => 'Students';
@@ -48,4 +46,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get payments => 'Payments';
+
+  @override
+  String get emptyStudents => 'No students';
 }

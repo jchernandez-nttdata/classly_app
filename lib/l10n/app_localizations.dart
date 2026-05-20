@@ -143,8 +143,8 @@ abstract class AppLocalizations {
   /// No description provided for @operationFailed.
   ///
   /// In en, this message translates to:
-  /// **'Something went wrong while trying to {operation}. Please try again.'**
-  String operationFailed(Object operation);
+  /// **'Something went wrong. Please try again later.'**
+  String get operationFailed;
 
   /// No description provided for @students.
   ///
@@ -175,6 +175,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Payments'**
   String get payments;
+
+  /// No description provided for @emptyStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'No students'**
+  String get emptyStudents;
 }
 
 class _AppLocalizationsDelegate

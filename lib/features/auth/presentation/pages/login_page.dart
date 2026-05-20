@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
         if (state.isError) {
           ClasslySnackbar.show(
             context,
-            message: context.localizations.operationFailed('login'),
+            message: context.localizations.operationFailed,
             type: ClasslySnackbarType.error,
           );
         }
