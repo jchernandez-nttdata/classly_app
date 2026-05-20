@@ -2,8 +2,10 @@ import 'package:classly_app/core/utils/extensions/build_context_extension.dart';
 import 'package:classly_app/core/widgets/widgets.dart';
 import 'package:classly_app/features/auth/constants/assets.dart';
 import 'package:classly_app/features/auth/domain/cubits/auth/auth_cubit.dart';
+import 'package:classly_app/features/students/consts/students_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -29,8 +31,7 @@ class LoginPage extends StatelessWidget {
         }
 
         if (state.isSuccess) {
-          //TODO(jc): navigate to home page, once it's implemented
-          // context.go('/home');
+          context.go(StudentsRoutes.students.path);
         }
       },
       child: const LoginView(),

@@ -12,7 +12,7 @@ class LightTheme {
     fontFamily: 'Poppins',
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      hintStyle: TextStyle(color: _colorExtension.hintColor),
+      hintStyle: TextStyle(color: _colorExtension.grayColor),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
         borderSide: BorderSide(color: _colorExtension.borderColor),
@@ -30,6 +30,13 @@ class LightTheme {
         ),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: _colorExtension.surface,
+      selectedItemColor: _colorExtension.primaryColor,
+      unselectedItemColor: _colorExtension.grayColor,
+      elevation: 10,
+      showUnselectedLabels: true,
     ),
   );
 }

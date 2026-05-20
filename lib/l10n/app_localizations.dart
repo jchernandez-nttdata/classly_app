@@ -145,6 +145,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong while trying to {operation}. Please try again.'**
   String operationFailed(Object operation);
+
+  /// No description provided for @students.
+  ///
+  /// In en, this message translates to:
+  /// **'Students'**
+  String get students;
+
+  /// No description provided for @classes.
+  ///
+  /// In en, this message translates to:
+  /// **'Classes'**
+  String get classes;
+
+  /// No description provided for @chat.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get chat;
+
+  /// No description provided for @attendances.
+  ///
+  /// In en, this message translates to:
+  /// **'Attendances'**
+  String get attendances;
+
+  /// No description provided for @payments.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments'**
+  String get payments;
 }
 
 class _AppLocalizationsDelegate

@@ -33,4 +33,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String operationFailed(Object operation) {
     return 'Ocurrió un problema al intentar $operation. Inténtalo nuevamente.';
   }
+
+  @override
+  String get students => 'Alumnos';
+
+  @override
+  String get classes => 'Clases';
+
+  @override
+  String get chat => 'Chat';
+
+  @override
+  String get attendances => 'Asistencias';
+
+  @override
+  String get payments => 'Pagos';
 }

@@ -33,4 +33,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String operationFailed(Object operation) {
     return 'Something went wrong while trying to $operation. Please try again.';
   }
+
+  @override
+  String get students => 'Students';
+
+  @override
+  String get classes => 'Classes';
+
+  @override
+  String get chat => 'Chat';
+
+  @override
+  String get attendances => 'Attendances';
+
+  @override
+  String get payments => 'Payments';
 }

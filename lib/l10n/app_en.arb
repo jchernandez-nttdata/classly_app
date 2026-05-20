@@ -6,5 +6,10 @@
   "emailRequired": "Email is required",
   "invalidEmail": "Email is invalid",
   "passwordRequired": "Password es required",
-  "operationFailed": "Something went wrong while trying to {operation}. Please try again."
+  "operationFailed": "Something went wrong while trying to {operation}. Please try again.",
+  "students": "Students",
+  "classes": "Classes",
+  "chat": "Chat",
+  "attendances": "Attendances",
+  "payments": "Payments"
 }
