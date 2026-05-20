@@ -1,5 +1,5 @@
-import 'package:classly_app/features/auth/pages/login_page.dart';
-import 'package:classly_app/features/auth/routes/auth_routes.dart';
+import 'package:classly_app/features/auth/constants/auth_routes.dart';
+import 'package:classly_app/features/auth/presentation/pages/login_page.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(

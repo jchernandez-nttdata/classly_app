@@ -19,4 +19,18 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get logIn => 'Iniciar sesión';
+
+  @override
+  String get emailRequired => 'Correo es requerido';
+
+  @override
+  String get invalidEmail => 'Correo es inválido';
+
+  @override
+  String get passwordRequired => 'Contraseña es requerida';
+
+  @override
+  String operationFailed(Object operation) {
+    return 'Ocurrió un problema al intentar $operation. Inténtalo nuevamente.';
+  }
 }

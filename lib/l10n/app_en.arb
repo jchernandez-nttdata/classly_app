@@ -2,5 +2,9 @@
   "helloWorld": "Hello World!",
   "email": "Email",
   "password": "Password",
-  "logIn": "Log in"
+  "logIn": "Log in",
+  "emailRequired": "Email is required",
+  "invalidEmail": "Email is invalid",
+  "passwordRequired": "Password es required",
+  "operationFailed": "Something went wrong while trying to {operation}. Please try again."
 }

@@ -2,5 +2,9 @@
   "helloWorld": "Hola Mundo!",
   "email": "Correo",
   "password": "Contraseña",
-  "logIn": "Iniciar sesión"
+  "logIn": "Iniciar sesión",
+  "emailRequired": "Correo es requerido",
+  "invalidEmail": "Correo es inválido",
+  "passwordRequired": "Contraseña es requerida",
+  "operationFailed": "Ocurrió un problema al intentar {operation}. Inténtalo nuevamente."
 }
