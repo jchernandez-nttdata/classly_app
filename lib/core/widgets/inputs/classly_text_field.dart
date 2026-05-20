@@ -7,12 +7,14 @@ class ClasslyTextField extends StatefulWidget {
     this.hintText,
     this.keyboardType,
     this.obscureText = false,
+    this.validator,
   });
 
   final void Function(String value)? onChanged;
   final String? hintText;
   final TextInputType? keyboardType;
   final bool obscureText;
+  final String? Function(String? value)? validator;
 
   @override
   State<ClasslyTextField> createState() => _ClasslyTextFieldState();
@@ -35,6 +37,8 @@ class _ClasslyTextFieldState extends State<ClasslyTextField> {
       onChanged: widget.onChanged,
       keyboardType: widget.keyboardType,
       obscureText: _isObscured,
+      validator: widget.validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         hintText: widget.hintText,
         suffixIcon: isPasswordField
