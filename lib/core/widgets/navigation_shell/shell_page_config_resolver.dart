@@ -7,8 +7,8 @@ class ShellPageConfigResolver {
   static ShellPageConfig resolve(
     BuildContext context,
   ) {
-    final location = GoRouterState.of(context).matchedLocation;
-    switch (location) {
+    final exactLocation = GoRouterState.of(context).uri.toString();
+    switch (exactLocation) {
       case '/students':
         return StudentsView.config(context);
 
