@@ -6,10 +6,12 @@ import 'package:classly_app/core/utils/extensions/build_context_extension.dart';
 import 'package:classly_app/core/utils/utils.dart';
 import 'package:classly_app/core/widgets/navigation_shell/shell_config.dart';
 import 'package:classly_app/core/widgets/widgets.dart';
+import 'package:classly_app/features/students/consts/students_routes.dart';
 import 'package:classly_app/features/students/domain/cubits/students/students_cubit.dart';
 import 'package:classly_app/features/students/presentation/widgets/student_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class StudentsPage extends StatelessWidget {
   const StudentsPage({super.key});
@@ -45,7 +47,7 @@ class StudentsView extends StatefulWidget {
   static ShellPageConfig config(BuildContext context) {
     return ShellPageConfig(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => context.pushNamed(StudentsRoutes.addStudent.name),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100),
         ),
@@ -102,7 +104,10 @@ class _StudentsViewState extends State<StudentsView> {
                   itemCount: students.length,
                   itemBuilder: (context, index) => StudentTile(
                     student: students[index],
-                    onEdit: () {},
+                    onEdit: () => context.pushNamed(
+                      StudentsRoutes.editStudent.name,
+                      pathParameters: {'id': students[index].id.toString()},
+                    ),
                   ),
                   separatorBuilder: (context, index) => Divider(
                     height: 1,

@@ -1,6 +1,7 @@
 import 'package:classly_app/core/widgets/navigation_shell/bottom_navigation_shell.dart';
 import 'package:classly_app/features/auth/constants/auth_routes.dart';
 import 'package:classly_app/features/auth/presentation/pages/login_page.dart';
+import 'package:classly_app/features/students/consts/students.router.dart';
 import 'package:classly_app/features/students/consts/students_routes.dart';
 import 'package:classly_app/features/students/presentation/pages/students_page.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +21,7 @@ final appRouter = GoRouter(
 
       branches: [
         StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: StudentsRoutes.students.path,
-              builder: (context, state) => const StudentsPage(),
-            ),
-          ],
+          routes: studentRouter,
         ),
 
         StatefulShellBranch(
