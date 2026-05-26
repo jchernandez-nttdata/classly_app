@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class ClasslyButton extends StatelessWidget {
   const ClasslyButton({
-    required this.onPressed,
     required this.text,
+    required this.onPressed,
     this.isEnabled = true,
     super.key,
   });

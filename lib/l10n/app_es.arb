@@ -12,5 +12,11 @@
   "chat": "Chat",
   "attendances": "Asistencias",
   "payments": "Pagos",
-  "emptyStudents": "No hay estudiantes"
+  "emptyStudents": "No hay estudiantes",
+  "addStudent": "Agregar estudiante",
+  "editStudent": "Editar estudiante",
+  "name": "Nombre",
+  "dni": "DNI",
+  "birthdate": "Fecha de nacimiento",
+  "save": "Guardar"
 }

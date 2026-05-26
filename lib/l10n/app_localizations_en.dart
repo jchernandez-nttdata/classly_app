@@ -49,4 +49,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyStudents => 'No students';
+
+  @override
+  String get addStudent => 'Add student';
+
+  @override
+  String get editStudent => 'Edit student';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get dni => 'DNI';
+
+  @override
+  String get birthdate => 'Birthdate';
+
+  @override
+  String get save => 'Save';
 }

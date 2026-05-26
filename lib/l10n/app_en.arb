@@ -12,5 +12,11 @@
   "chat": "Chat",
   "attendances": "Attendances",
   "payments": "Payments",
-  "emptyStudents": "No students"
+  "emptyStudents": "No students",
+  "addStudent": "Add student",
+  "editStudent": "Edit student",
+  "name": "Name",
+  "dni": "DNI",
+  "birthdate": "Birthdate",
+  "save": "Save"
 }

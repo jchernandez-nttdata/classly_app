@@ -50,4 +50,22 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get emptyStudents => 'No hay estudiantes';
+
+  @override
+  String get addStudent => 'Agregar estudiante';
+
+  @override
+  String get editStudent => 'Editar estudiante';
+
+  @override
+  String get name => 'Nombre';
+
+  @override
+  String get dni => 'DNI';
+
+  @override
+  String get birthdate => 'Fecha de nacimiento';
+
+  @override
+  String get save => 'Guardar';
 }
