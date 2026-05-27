@@ -11,6 +11,7 @@ import 'package:classly_app/features/auth/domain/repositories/auth_repository.da
 import 'package:classly_app/features/students/data/datasources/students_datasource.dart';
 import 'package:classly_app/features/students/data/datasources/students_datasource_impl.dart';
 import 'package:classly_app/features/students/data/repositories/student_repository_impl.dart';
+import 'package:classly_app/features/students/domain/cubits/manage_student/manage_student_cubit.dart';
 import 'package:classly_app/features/students/domain/cubits/students/students_cubit.dart';
 import 'package:classly_app/features/students/domain/repositories/students_repository.dart';
 import 'package:get_it/get_it.dart';
@@ -50,5 +51,8 @@ void setUpServiceLocator() {
     )
     ..registerFactory<StudentsCubit>(
       () => StudentsCubit(repository: getIt<IStudentsRepository>()),
+    )
+    ..registerFactory<ManageStudentCubit>(
+      () => ManageStudentCubit(repository: getIt<IStudentsRepository>()),
     );
 }
