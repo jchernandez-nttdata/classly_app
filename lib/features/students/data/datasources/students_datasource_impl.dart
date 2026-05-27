@@ -2,6 +2,7 @@ import 'package:classly_app/core/network/http_client.dart';
 import 'package:classly_app/core/network/http_request.dart';
 import 'package:classly_app/features/students/data/datasources/students_datasource.dart';
 import 'package:classly_app/features/students/data/models/student_model.dart';
+import 'package:classly_app/features/students/data/requests/add_student_request.dart';
 
 final class StudentsDatasourceImpl implements IStudentsDatasource {
   StudentsDatasourceImpl({
@@ -23,5 +24,16 @@ final class StudentsDatasourceImpl implements IStudentsDatasource {
     return data
         .map((json) => StudentModel.fromJson(json as Map<String, dynamic>))
         .toList();
+  }
+
+  @override
+  Future<void> addStudent(AddStudentRequest request) {
+    return _httpClient.request(
+      HttpRequest(
+        path: StudentsEndpoint.addStudent.path,
+        method: HttpMethod.post,
+        data: request.toJson(),
+      ),
+    );
   }
 }
