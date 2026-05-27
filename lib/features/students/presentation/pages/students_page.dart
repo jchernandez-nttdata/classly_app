@@ -64,57 +64,92 @@ class _StudentsViewState extends State<StudentsView> {
     super.initState();
   }
 
+  Future<void> _onRefresh() async {
+    await context.read<StudentsCubit>().fetchStudents();
+  }
+
   @override
   Widget build(BuildContext context) {
     final students = context.select(
       (StudentsCubit cubit) => cubit.state.students,
     );
+
     final isLoading = context.select(
       (StudentsCubit cubit) => cubit.state.isLoading,
     );
+
     return SafeArea(
       child: Padding(
         padding: classlyPadding(),
         child: Column(
           children: [
-            ClasslyAppbar(title: context.localizations.students),
+            ClasslyAppbar(
+              title: context.localizations.students,
+            ),
             const SizedBox(height: 24),
             ClasslyTextField(
               prefixIcon: const Icon(Icons.search),
-              onChanged: (value) =>
-                  context.read<StudentsCubit>().filterStudents(value),
+              onChanged: (value) {
+                context.read<StudentsCubit>().filterStudents(value);
+              },
             ),
             const SizedBox(height: 16),
-            if (isLoading)
-              const Center(
-                child: CircularProgressIndicator(),
-              )
-            else if (students.isEmpty)
-              Center(
-                child: Text(
-                  context.localizations.emptyStudents,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: context.colorScheme.grayColor,
-                  ),
-                ),
-              )
-            else
-              Expanded(
-                child: ListView.separated(
-                  itemCount: students.length,
-                  itemBuilder: (context, index) => StudentTile(
-                    student: students[index],
-                    onEdit: () => context.pushNamed(
-                      StudentsRoutes.editStudent.name,
-                      pathParameters: {'id': students[index].id.toString()},
-                    ),
-                  ),
-                  separatorBuilder: (context, index) => Divider(
-                    height: 1,
-                    color: context.colorScheme.borderColor,
-                  ),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: _onRefresh,
+                child: Builder(
+                  builder: (context) {
+                    if (isLoading && students.isEmpty) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+
+                    if (students.isEmpty) {
+                      return SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.6,
+                          child: Center(
+                            child: Text(
+                              context.localizations.emptyStudents,
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(
+                                    color: context.colorScheme.grayColor,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+
+                    return ListView.separated(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemCount: students.length,
+                      itemBuilder: (context, index) {
+                        final student = students[index];
+
+                        return StudentTile(
+                          student: student,
+                          onEdit: () => context.pushNamed(
+                            StudentsRoutes.editStudent.name,
+                            pathParameters: {
+                              'id': student.id.toString(),
+                            },
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return Divider(
+                          height: 1,
+                          color: context.colorScheme.borderColor,
+                        );
+                      },
+                    );
+                  },
                 ),
               ),
+            ),
           ],
         ),
       ),

@@ -64,8 +64,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dni => 'DNI';
 
   @override
+  String get phone => 'Celular';
+
+  @override
   String get birthdate => 'Fecha de nacimiento';
 
   @override
   String get save => 'Guardar';
+
+  @override
+  String get operationSuccess => 'Cambios guardados correctamente';
 }

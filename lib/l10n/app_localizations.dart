@@ -206,6 +206,12 @@ abstract class AppLocalizations {
   /// **'DNI'**
   String get dni;
 
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
   /// No description provided for @birthdate.
   ///
   /// In en, this message translates to:
@@ -217,6 +223,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get save;
+
+  /// No description provided for @operationSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes saved successfully'**
+  String get operationSuccess;
 }
 
 class _AppLocalizationsDelegate

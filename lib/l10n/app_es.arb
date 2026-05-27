@@ -17,6 +17,8 @@
   "editStudent": "Editar estudiante",
   "name": "Nombre",
   "dni": "DNI",
+  "phone": "Celular",
   "birthdate": "Fecha de nacimiento",
-  "save": "Guardar"
+  "save": "Guardar",
+  "operationSuccess": "Cambios guardados correctamente"
 }

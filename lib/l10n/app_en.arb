@@ -17,6 +17,8 @@
   "editStudent": "Edit student",
   "name": "Name",
   "dni": "DNI",
+  "phone": "Phone",
   "birthdate": "Birthdate",
-  "save": "Save"
+  "save": "Save",
+  "operationSuccess": "Changes saved successfully"
 }
