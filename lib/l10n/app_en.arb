@@ -28,5 +28,7 @@
   "friday": "Friday",
   "saturday": "Saturday",
   "sunday": "Sunday",
-  "emptyClasses": "No classes"
+  "emptyClasses": "No classes",
+  "loading": "Loading...",
+  "selectLocation": "Select location"
 }

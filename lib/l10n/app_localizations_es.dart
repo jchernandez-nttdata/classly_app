@@ -98,4 +98,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get emptyClasses => 'No clases';
+
+  @override
+  String get loading => 'Cargando...';
+
+  @override
+  String get selectLocation => 'Selecciona locación';
 }

@@ -97,4 +97,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyClasses => 'No classes';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get selectLocation => 'Select location';
 }

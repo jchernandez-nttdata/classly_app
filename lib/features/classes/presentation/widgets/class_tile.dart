@@ -1,5 +1,5 @@
 import 'package:classly_app/core/utils/extensions/build_context_extension.dart';
-import 'package:classly_app/features/classes/domain/entities/class.dart';
+import 'package:classly_app/features/classes/domain/entities/class_schedule.dart';
 import 'package:classly_app/features/classes/domain/entities/day_of_week.dart';
 import 'package:flutter/material.dart';
 

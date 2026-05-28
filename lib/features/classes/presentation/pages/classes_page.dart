@@ -1,20 +1,24 @@
 import 'dart:async';
 
+import 'package:classly_app/core/services/service_locator.dart';
 import 'package:classly_app/core/theme/classly_colors.dart';
 import 'package:classly_app/core/utils/extensions/build_context_extension.dart';
 import 'package:classly_app/core/utils/utils.dart';
 import 'package:classly_app/core/widgets/widgets.dart';
-import 'package:classly_app/features/classes/domain/entities/class.dart';
-import 'package:classly_app/features/classes/domain/entities/day_of_week.dart';
+import 'package:classly_app/features/classes/domain/cubits/classes/classes_cubit.dart';
 import 'package:classly_app/features/classes/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ClassesPage extends StatelessWidget {
   const ClassesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const ClassesView();
+    return BlocProvider.value(
+      value: getIt<ClassesCubit>(),
+      child: const ClassesView(),
+    );
   }
 }
 
@@ -28,42 +32,18 @@ class ClassesView extends StatefulWidget {
 class _ClassesViewState extends State<ClassesView> {
   @override
   void initState() {
+    unawaited(context.read<ClassesCubit>().fetchLocations());
+    unawaited(context.read<ClassesCubit>().fetchClasses());
     super.initState();
   }
 
-  Future<void> _onRefresh() async {}
-
-  static List<ClassSchedule> classes = [
-    ClassSchedule(
-      id: 1,
-      dayOfWeek: DayOfWeek.monday,
-      initTime: '08:00',
-      endTime: '10:00',
-      className: 'Salsa',
-      location: 'Sala 101',
-    ),
-    ClassSchedule(
-      id: 2,
-      dayOfWeek: DayOfWeek.wednesday,
-      initTime: '10:00',
-      endTime: '12:00',
-      className: 'Marinera',
-      location: 'Sala 102',
-    ),
-    ClassSchedule(
-      id: 3,
-      dayOfWeek: DayOfWeek.friday,
-      initTime: '14:00',
-      endTime: '16:00',
-      className: 'Danzas',
-      location: 'Sala 103',
-    ),
-  ];
-
-  bool get isLoading => false;
+  Future<void> _onRefresh() async {
+    await context.read<ClassesCubit>().fetchClasses();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<ClassesCubit>().state;
     return SafeArea(
       child: Padding(
         padding: classlyPadding(),
@@ -74,21 +54,25 @@ class _ClassesViewState extends State<ClassesView> {
               title: context.localizations.classes,
             ),
             const SizedBox(height: 24),
-            const ClasslyDropdownButton(
-              items: [
-                ClasslyDropdownButtonItem(
-                  id: 'salsa',
-                  label: 'Salsa',
-                ),
-                ClasslyDropdownButtonItem(
-                  id: 'marinera',
-                  label: 'Marinera',
-                ),
-                ClasslyDropdownButtonItem(
-                  id: 'danzas',
-                  label: 'Danzas',
-                ),
-              ],
+            ClasslyDropdownButton(
+              label: context.localizations.selectLocation,
+              isLoading: state.isLocationsLoading,
+              items: state.locations
+                  .map(
+                    (location) => ClasslyDropdownButtonItem(
+                      id: location.id.toString(),
+                      label: location.name,
+                    ),
+                  )
+                  .toList(),
+              onChanged: (item) {
+                final locationId = int.tryParse(item?.id ?? '');
+                unawaited(
+                  context.read<ClassesCubit>().fetchClasses(
+                    locationId: locationId,
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 16),
 
@@ -97,13 +81,13 @@ class _ClassesViewState extends State<ClassesView> {
                 onRefresh: _onRefresh,
                 child: Builder(
                   builder: (context) {
-                    if (isLoading && classes.isEmpty) {
+                    if (state.isClassesLoading && state.classes.isEmpty) {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
 
-                    if (classes.isEmpty) {
+                    if (state.classes.isEmpty) {
                       return SingleChildScrollView(
                         physics: const AlwaysScrollableScrollPhysics(),
                         child: SizedBox(
@@ -123,9 +107,9 @@ class _ClassesViewState extends State<ClassesView> {
 
                     return ListView.separated(
                       physics: const AlwaysScrollableScrollPhysics(),
-                      itemCount: classes.length,
+                      itemCount: state.classes.length,
                       itemBuilder: (context, index) {
-                        final classSchedule = classes[index];
+                        final classSchedule = state.classes[index];
 
                         return ClassTile(
                           classSchedule: classSchedule,
