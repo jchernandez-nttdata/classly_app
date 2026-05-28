@@ -1,6 +1,7 @@
 import 'package:classly_app/core/models/request_status.dart';
 import 'package:classly_app/core/models/result.dart';
 import 'package:classly_app/features/students/data/requests/add_student_request.dart';
+import 'package:classly_app/features/students/data/requests/update_student_request.dart';
 import 'package:classly_app/features/students/domain/cubits/manage_student/manage_student_form.dart';
 import 'package:classly_app/features/students/domain/repositories/students_repository.dart';
 import 'package:equatable/equatable.dart';
@@ -37,7 +38,33 @@ class ManageStudentCubit extends Cubit<ManageStudentState> {
     }
   }
 
+  Future<void> updateStudent() async {
+    emit(state.copyWith(requestStatus: RequestStatus.loading));
+
+    final request = UpdateStudentRequest(
+      id: state.studentId!,
+      name: state.studentFormData.name,
+      email: state.studentFormData.email,
+      dni: state.studentFormData.dni,
+      phone: state.studentFormData.phone,
+      birthDate: state.studentFormData.birthDate,
+    );
+
+    final result = await _repository.updateStudent(request);
+
+    switch (result) {
+      case Success<void>():
+        emit(state.copyWith(requestStatus: RequestStatus.success));
+      case Error<void>():
+        emit(state.copyWith(requestStatus: RequestStatus.failure));
+    }
+  }
+
   void updateForm(StudentFormData formData) {
     emit(state.copyWith(studentFormData: formData));
+  }
+
+  void setStudentId(int studentId) {
+    emit(state.copyWith(studentId: studentId));
   }
 }

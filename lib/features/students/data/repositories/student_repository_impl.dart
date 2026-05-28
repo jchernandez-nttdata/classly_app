@@ -1,6 +1,7 @@
 import 'package:classly_app/core/models/result.dart';
 import 'package:classly_app/features/students/data/datasources/students_datasource.dart';
 import 'package:classly_app/features/students/data/requests/add_student_request.dart';
+import 'package:classly_app/features/students/data/requests/update_student_request.dart';
 import 'package:classly_app/features/students/domain/entities/student.dart';
 import 'package:classly_app/features/students/domain/repositories/students_repository.dart';
 
@@ -25,6 +26,16 @@ final class StudentsRepositoryImpl implements IStudentsRepository {
   Future<Result<void>> addStudent(AddStudentRequest request) async {
     try {
       await _studentsDatasource.addStudent(request);
+      return const Success(null);
+    } on Exception catch (e) {
+      return Result.error(e);
+    }
+  }
+
+  @override
+  Future<Result<void>> updateStudent(UpdateStudentRequest request) async {
+    try {
+      await _studentsDatasource.updateStudent(request);
       return const Success(null);
     } on Exception catch (e) {
       return Result.error(e);
