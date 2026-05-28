@@ -74,4 +74,28 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get operationSuccess => 'Cambios guardados correctamente';
+
+  @override
+  String get monday => 'Lunes';
+
+  @override
+  String get tuesday => 'Martes';
+
+  @override
+  String get wednesday => 'Miércoles';
+
+  @override
+  String get thursday => 'Jueves';
+
+  @override
+  String get friday => 'Viernes';
+
+  @override
+  String get saturday => 'Sábado';
+
+  @override
+  String get sunday => 'Domingo';
+
+  @override
+  String get emptyClasses => 'No clases';
 }

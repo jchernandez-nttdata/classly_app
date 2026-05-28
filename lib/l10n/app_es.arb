@@ -20,5 +20,13 @@
   "phone": "Celular",
   "birthdate": "Fecha de nacimiento",
   "save": "Guardar",
-  "operationSuccess": "Cambios guardados correctamente"
+  "operationSuccess": "Cambios guardados correctamente",
+  "monday": "Lunes",
+  "tuesday": "Martes",
+  "wednesday": "Miércoles",
+  "thursday": "Jueves",
+  "friday": "Viernes",
+  "saturday": "Sábado",
+  "sunday": "Domingo",
+  "emptyClasses": "No clases"
 }

@@ -20,5 +20,13 @@
   "phone": "Phone",
   "birthdate": "Birthdate",
   "save": "Save",
-  "operationSuccess": "Changes saved successfully"
+  "operationSuccess": "Changes saved successfully",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+  "emptyClasses": "No classes"
 }

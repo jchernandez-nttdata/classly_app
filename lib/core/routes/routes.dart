@@ -25,13 +25,7 @@ final appRouter = GoRouter(
         ),
 
         StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: '/classes',
-              builder: (context, state) =>
-                  const Scaffold(body: Center(child: Text('Classes Page'))),
-            ),
-          ],
+          routes: classesRouter,
         ),
 
         StatefulShellBranch(
