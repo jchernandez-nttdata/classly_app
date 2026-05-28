@@ -1,24 +1,24 @@
 import 'package:classly_app/core/theme/classly_colors.dart';
 import 'package:classly_app/core/utils/extensions/build_context_extension.dart';
-import 'package:classly_app/features/students/domain/entities/student.dart';
+import 'package:classly_app/features/classes/domain/entities/enrolled_student.dart';
 import 'package:flutter/material.dart';
 
-class StudentTile extends StatelessWidget {
-  const StudentTile({
+class EnrolledStudentTile extends StatelessWidget {
+  const EnrolledStudentTile({
     required this.student,
-    this.onEdit,
+    this.onDelete,
     super.key,
   });
 
-  final Student student;
-  final VoidCallback? onEdit;
+  final EnrolledStudent student;
+  final VoidCallback? onDelete;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
-        vertical: 12,
+        vertical: 8,
       ),
       child: Row(
         children: [
@@ -34,7 +34,7 @@ class StudentTile extends StatelessWidget {
                 Row(
                   children: [
                     Icon(
-                      Icons.credit_card_rounded,
+                      Icons.email,
                       size: 16,
                       color: context.colorScheme.grayColor,
                     ),
@@ -46,22 +46,12 @@ class StudentTile extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.phone,
-                      size: 16,
-                      color: context.colorScheme.grayColor,
-                    ),
-                    const SizedBox(width: 4),
-                    Expanded(
-                      child: Text(
-                        student.phone,
-                        style: context.textTheme.bodyMedium,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
+                Text(
+                  context.localizations.remainingClasses(
+                    student.remainingClasses,
+                  ),
+                  style: context.textTheme.bodyMedium,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -69,8 +59,8 @@ class StudentTile extends StatelessWidget {
           const SizedBox(width: 12),
           IconButton(
             visualDensity: VisualDensity.compact,
-            onPressed: onEdit,
-            icon: const Icon(Icons.edit),
+            onPressed: onDelete,
+            icon: const Icon(Icons.delete),
           ),
         ],
       ),

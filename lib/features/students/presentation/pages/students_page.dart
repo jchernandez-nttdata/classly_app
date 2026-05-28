@@ -47,7 +47,12 @@ class StudentsView extends StatefulWidget {
   static ShellPageConfig config(BuildContext context) {
     return ShellPageConfig(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.pushNamed(StudentsRoutes.addStudent.name),
+        onPressed: () async {
+          final studentsCubit = context.read<StudentsCubit>();
+          await context.pushNamed(StudentsRoutes.addStudent.name);
+          if (!context.mounted) return;
+          unawaited(studentsCubit.fetchStudents());
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100),
         ),
@@ -131,11 +136,21 @@ class _StudentsViewState extends State<StudentsView> {
 
                         return StudentTile(
                           student: student,
-                          onEdit: () => context.pushNamed(
-                            StudentsRoutes.editStudent.name,
-                            pathParameters: {'id': student.id.toString()},
-                            extra: student.toJson(),
-                          ),
+                          onEdit: () async {
+                            final studentsCubit = context.read<StudentsCubit>();
+
+                            await context.pushNamed(
+                              StudentsRoutes.editStudent.name,
+                              pathParameters: {
+                                'id': student.id.toString(),
+                              },
+                              extra: student.toJson(),
+                            );
+
+                            if (!mounted) return;
+
+                            unawaited(studentsCubit.fetchStudents());
+                          },
                         );
                       },
                       separatorBuilder: (context, index) {

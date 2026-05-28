@@ -104,4 +104,31 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get selectLocation => 'Selecciona locación';
+
+  @override
+  String get schedule => 'Horario';
+
+  @override
+  String enrolledStudents(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count alumnos inscritos',
+      one: '1 alumno inscrito',
+      zero: 'No hay alumnos inscritos',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String remainingClasses(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count clases restantes',
+      one: '1 clase restante',
+      zero: 'No quedan clases',
+    );
+    return '$_temp0';
+  }
 }

@@ -5,10 +5,12 @@ import 'package:classly_app/core/theme/classly_colors.dart';
 import 'package:classly_app/core/utils/extensions/build_context_extension.dart';
 import 'package:classly_app/core/utils/utils.dart';
 import 'package:classly_app/core/widgets/widgets.dart';
+import 'package:classly_app/features/classes/consts/classes_routes.dart';
 import 'package:classly_app/features/classes/domain/cubits/classes/classes_cubit.dart';
 import 'package:classly_app/features/classes/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ClassesPage extends StatelessWidget {
   const ClassesPage({super.key});
@@ -127,7 +129,17 @@ class _ClassesViewState extends State<ClassesView> {
 
                         return ClassTile(
                           classSchedule: classSchedule,
-                          onTap: () {},
+                          onTap: () {
+                            unawaited(
+                              context.pushNamed(
+                                ClassesRoutes.scheduleDetail.name,
+                                pathParameters: {
+                                  'scheduleId': classSchedule.id.toString(),
+                                },
+                                extra: classSchedule.toJson(),
+                              ),
+                            );
+                          },
                         );
                       },
                       separatorBuilder: (context, index) {

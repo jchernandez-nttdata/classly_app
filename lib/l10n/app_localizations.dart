@@ -289,6 +289,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select location'**
   String get selectLocation;
+
+  /// No description provided for @schedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule'**
+  String get schedule;
+
+  /// No description provided for @enrolledStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No enrolled students} =1{1 enrolled student} other{{count} enrolled students}}'**
+  String enrolledStudents(num count);
+
+  /// No description provided for @remainingClasses.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No remaining classes} =1{1 remaining class} other{{count} remaining classes}}'**
+  String remainingClasses(num count);
 }
 
 class _AppLocalizationsDelegate
