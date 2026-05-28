@@ -2,13 +2,25 @@ import 'package:classly_app/core/utils/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 enum DayOfWeek {
-  monday,
-  tuesday,
-  wednesday,
-  thursday,
-  friday,
-  saturday,
-  sunday,
+  monday(1),
+  tuesday(2),
+  wednesday(3),
+  thursday(4),
+  friday(5),
+  saturday(6),
+  sunday(7)
+  ;
+
+  const DayOfWeek(this.value);
+
+  final int value;
+
+  static DayOfWeek fromValue(int value) {
+    return DayOfWeek.values.firstWhere(
+      (day) => day.value == value,
+      orElse: () => throw Exception('Invalid day value: $value'),
+    );
+  }
 }
 
 extension DayOfWeekMapper on DayOfWeek {
@@ -29,19 +41,6 @@ extension DayOfWeekMapper on DayOfWeek {
       case DayOfWeek.sunday:
         return 7;
     }
-  }
-
-  static DayOfWeek fromValue(int value) {
-    return switch (value) {
-      1 => DayOfWeek.monday,
-      2 => DayOfWeek.tuesday,
-      3 => DayOfWeek.wednesday,
-      4 => DayOfWeek.thursday,
-      5 => DayOfWeek.friday,
-      6 => DayOfWeek.saturday,
-      7 => DayOfWeek.sunday,
-      _ => throw Exception('Invalid day value: $value'),
-    };
   }
 
   String localized(BuildContext context) {
