@@ -15,6 +15,8 @@ class ClassesState extends Equatable {
 
   bool get isLocationsLoading => locationsStatus == RequestStatus.loading;
   bool get isClassesLoading => classesStatus == RequestStatus.loading;
+  bool get hasLocationsError => locationsStatus == RequestStatus.failure;
+  bool get hasClassesError => classesStatus == RequestStatus.failure;
 
   ClassesState copyWith({
     RequestStatus? locationsStatus,

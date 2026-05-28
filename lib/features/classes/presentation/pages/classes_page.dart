@@ -17,7 +17,21 @@ class ClassesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: getIt<ClassesCubit>(),
-      child: const ClassesView(),
+      child: BlocListener<ClassesCubit, ClassesState>(
+        listenWhen: (previous, current) =>
+            previous.locationsStatus != current.locationsStatus ||
+            previous.classesStatus != current.classesStatus,
+        listener: (context, state) {
+          if (state.hasLocationsError || state.hasClassesError) {
+            ClasslySnackbar.show(
+              context,
+              message: context.localizations.operationFailed,
+              type: .error,
+            );
+          }
+        },
+        child: const ClassesView(),
+      ),
     );
   }
 }
