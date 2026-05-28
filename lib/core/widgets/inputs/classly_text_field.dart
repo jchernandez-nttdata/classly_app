@@ -9,6 +9,7 @@ class ClasslyTextField extends StatefulWidget {
     this.obscureText = false,
     this.validator,
     this.prefixIcon,
+    this.initialValue,
   });
 
   final void Function(String value)? onChanged;
@@ -17,6 +18,7 @@ class ClasslyTextField extends StatefulWidget {
   final bool obscureText;
   final String? Function(String? value)? validator;
   final Widget? prefixIcon;
+  final String? initialValue;
 
   @override
   State<ClasslyTextField> createState() => _ClasslyTextFieldState();
@@ -32,6 +34,14 @@ class _ClasslyTextFieldState extends State<ClasslyTextField> {
   }
 
   @override
+  void didUpdateWidget(covariant ClasslyTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.initialValue != oldWidget.initialValue) {
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final isPasswordField = widget.obscureText;
 
@@ -40,6 +50,7 @@ class _ClasslyTextFieldState extends State<ClasslyTextField> {
       keyboardType: widget.keyboardType,
       obscureText: _isObscured,
       validator: widget.validator,
+      initialValue: widget.initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         hintText: widget.hintText,
