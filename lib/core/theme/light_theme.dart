@@ -48,6 +48,7 @@ class LightTheme {
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
+        floatingLabelBehavior: FloatingLabelBehavior.never,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
