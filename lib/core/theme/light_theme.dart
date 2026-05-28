@@ -38,5 +38,30 @@ class LightTheme {
       elevation: 10,
       showUnselectedLabels: true,
     ),
+    dropdownMenuTheme: DropdownMenuThemeData(
+      menuStyle: MenuStyle(
+        backgroundColor: WidgetStateProperty.all(_colorExtension.white),
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(_borderRadius),
+          ),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
+        hintStyle: TextStyle(color: _colorExtension.grayColor),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
+          borderSide: BorderSide(color: _colorExtension.borderColor),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
+          borderSide: BorderSide(color: _colorExtension.borderColor),
+        ),
+      ),
+    ),
   );
 }

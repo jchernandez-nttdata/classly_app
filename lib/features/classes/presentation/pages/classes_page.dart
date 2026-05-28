@@ -68,11 +68,29 @@ class _ClassesViewState extends State<ClassesView> {
       child: Padding(
         padding: classlyPadding(),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClasslyAppbar(
               title: context.localizations.classes,
             ),
             const SizedBox(height: 24),
+            const ClasslyDropdownButton(
+              items: [
+                ClasslyDropdownButtonItem(
+                  id: 'salsa',
+                  label: 'Salsa',
+                ),
+                ClasslyDropdownButtonItem(
+                  id: 'marinera',
+                  label: 'Marinera',
+                ),
+                ClasslyDropdownButtonItem(
+                  id: 'danzas',
+                  label: 'Danzas',
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
 
             Expanded(
               child: RefreshIndicator(
