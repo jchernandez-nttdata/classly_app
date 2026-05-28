@@ -1,16 +1,20 @@
+import 'dart:async';
+
 import 'package:classly_app/core/services/service_locator.dart';
 import 'package:classly_app/core/utils/extensions/build_context_extension.dart';
 import 'package:classly_app/core/utils/utils.dart';
 import 'package:classly_app/core/widgets/widgets.dart';
 import 'package:classly_app/features/students/domain/cubits/manage_student/manage_student_cubit.dart';
+import 'package:classly_app/features/students/domain/cubits/manage_student/manage_student_form.dart';
+import 'package:classly_app/features/students/domain/entities/student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ManageStudentPage extends StatelessWidget {
-  const ManageStudentPage({this.studentId, super.key});
+  const ManageStudentPage({this.student, super.key});
 
-  final int? studentId;
+  final Student? student;
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +41,39 @@ class ManageStudentPage extends StatelessWidget {
             context.pop();
           }
         },
-        child: ManageStudentView(studentId: studentId),
+        child: ManageStudentView(student: student),
       ),
     );
   }
 }
 
-class ManageStudentView extends StatelessWidget {
-  const ManageStudentView({this.studentId, super.key});
+class ManageStudentView extends StatefulWidget {
+  const ManageStudentView({this.student, super.key});
 
-  final int? studentId;
+  final Student? student;
+
+  @override
+  State<ManageStudentView> createState() => _ManageStudentViewState();
+}
+
+class _ManageStudentViewState extends State<ManageStudentView> {
+  @override
+  void initState() {
+    if (widget.student != null) {
+      context.read<ManageStudentCubit>()
+        ..updateForm(
+          StudentFormData(
+            name: widget.student!.name,
+            email: widget.student!.email,
+            dni: widget.student!.dni,
+            phone: widget.student!.phone,
+            birthDate: widget.student!.birthDate,
+          ),
+        )
+        ..setStudentId(widget.student!.id);
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +97,7 @@ class ManageStudentView extends StatelessWidget {
                     ClasslyTextField(
                       hintText: context.localizations.name,
                       keyboardType: TextInputType.name,
+                      initialValue: widget.student?.name,
                       onChanged: (value) => cubit.updateForm(
                         cubit.state.studentFormData.copyWith(name: value),
                       ),
@@ -77,6 +105,7 @@ class ManageStudentView extends StatelessWidget {
                     ClasslyTextField(
                       hintText: context.localizations.email,
                       keyboardType: TextInputType.emailAddress,
+                      initialValue: widget.student?.email,
                       onChanged: (value) => cubit.updateForm(
                         cubit.state.studentFormData.copyWith(email: value),
                       ),
@@ -84,6 +113,7 @@ class ManageStudentView extends StatelessWidget {
                     ClasslyTextField(
                       hintText: context.localizations.dni,
                       keyboardType: TextInputType.number,
+                      initialValue: widget.student?.dni,
                       onChanged: (value) => cubit.updateForm(
                         cubit.state.studentFormData.copyWith(dni: value),
                       ),
@@ -91,21 +121,24 @@ class ManageStudentView extends StatelessWidget {
                     ClasslyTextField(
                       hintText: context.localizations.phone,
                       keyboardType: TextInputType.phone,
+                      initialValue: widget.student?.phone,
                       onChanged: (value) => cubit.updateForm(
                         cubit.state.studentFormData.copyWith(phone: value),
                       ),
                     ),
-                    ClasslyTextField(
-                      hintText: context.localizations.password,
-                      keyboardType: TextInputType.visiblePassword,
-                      onChanged: (value) => cubit.updateForm(
-                        cubit.state.studentFormData.copyWith(password: value),
+                    if (widget.student == null)
+                      ClasslyTextField(
+                        hintText: context.localizations.password,
+                        keyboardType: TextInputType.visiblePassword,
+                        onChanged: (value) => cubit.updateForm(
+                          cubit.state.studentFormData.copyWith(password: value),
+                        ),
                       ),
-                    ),
                     ClasslyDatePicker(
                       onDateChanged: (value) => cubit.updateForm(
                         cubit.state.studentFormData.copyWith(birthDate: value),
                       ),
+                      initialDate: widget.student?.birthDate,
                     ),
                   ],
                 ),
@@ -114,7 +147,13 @@ class ManageStudentView extends StatelessWidget {
             const SizedBox(height: 8),
             ClasslyButton(
               text: context.localizations.save,
-              onPressed: cubit.addStudent,
+              onPressed: () {
+                if (widget.student == null) {
+                  unawaited(cubit.addStudent());
+                } else {
+                  unawaited(cubit.updateStudent());
+                }
+              },
             ),
             const SizedBox(height: 8),
           ],
@@ -123,7 +162,7 @@ class ManageStudentView extends StatelessWidget {
     );
   }
 
-  String getTitle(BuildContext context) => studentId == null
+  String getTitle(BuildContext context) => widget.student == null
       ? context.localizations.addStudent
       : context.localizations.editStudent;
 }

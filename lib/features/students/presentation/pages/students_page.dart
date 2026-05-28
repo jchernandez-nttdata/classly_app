@@ -133,9 +133,8 @@ class _StudentsViewState extends State<StudentsView> {
                           student: student,
                           onEdit: () => context.pushNamed(
                             StudentsRoutes.editStudent.name,
-                            pathParameters: {
-                              'id': student.id.toString(),
-                            },
+                            pathParameters: {'id': student.id.toString()},
+                            extra: student.toJson(),
                           ),
                         );
                       },

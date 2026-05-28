@@ -1,4 +1,5 @@
 import 'package:classly_app/features/students/consts/students_routes.dart';
+import 'package:classly_app/features/students/domain/entities/student.dart';
 import 'package:classly_app/features/students/presentation/pages/manage_student_page.dart';
 import 'package:classly_app/features/students/presentation/pages/students_page.dart';
 import 'package:go_router/go_router.dart';
@@ -18,8 +19,8 @@ final List<GoRoute> studentRouter = [
         path: StudentsRoutes.editStudent.path,
         name: 'editStudent',
         builder: (context, state) {
-          final id = state.pathParameters['id']!;
-          return ManageStudentPage(studentId: int.parse(id));
+          final student = state.extra! as Map<String, dynamic>;
+          return ManageStudentPage(student: Student.fromJson(student));
         },
       ),
     ],
